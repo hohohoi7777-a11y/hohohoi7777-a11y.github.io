@@ -6,33 +6,61 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+
     <style>
         /* 既存の余白調整 */
-        .intro { padding: 2rem 0 !important; }
-        section { padding: 2rem 0 !important; }
-        #wrapper > section { border-top: none !important; }
+        .intro {
+            padding: 2rem 0 !important;
+        }
+
+        section {
+            padding: 2rem 0 !important;
+        }
+
+        #wrapper > section {
+            border-top: none !important;
+        }
 
         /* 言語切り替え */
         .language-switch {
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start;
+            align-items: center;
             gap: 0.5rem;
-            padding: 1rem 0;
+            margin: 0 0 2rem 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .language-switch button {
+            font-family: inherit;
             font-size: 0.8rem;
+            font-weight: 600;
             padding: 0.4rem 0.8rem;
             height: auto;
             line-height: 1.5;
             min-width: 0;
             border-radius: 4px;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .language-switch button.active {
             background-color: #49fcd4;
             color: #000 !important;
+        }
+
+        /* 画面幅に合わせた調整 */
+        @media screen and (max-width: 736px) {
+            .language-switch {
+                margin-bottom: 1.5rem;
+            }
+
+            .language-switch button {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.65rem;
+            }
         }
     </style>
 </head>
@@ -41,26 +69,33 @@
 
     <div id="wrapper">
 
-        <!-- 言語切り替えボタン -->
-        <nav class="language-switch" aria-label="Language">
-            <button type="button" id="lang-ja"
-                    onclick="setLanguage('ja')">
-                日本語
-            </button>
-            <button type="button" id="lang-en"
-                    onclick="setLanguage('en')">
-                English
-            </button>
-        </nav>
-
         <!-- トップ -->
         <section class="intro">
             <header>
+
+                <!-- 言語切り替えボタン -->
+                <nav class="language-switch" aria-label="Language">
+                    <button type="button"
+                            id="lang-ja"
+                            onclick="setLanguage('ja')">
+                        日本語
+                    </button>
+
+                    <button type="button"
+                            id="lang-en"
+                            onclick="setLanguage('en')">
+                        English
+                    </button>
+                </nav>
+
                 <h1>Pop'n Games</h1>
+
                 <p data-ja="Pop'n Games 公式サイトへようこそ。"
                    data-en="Welcome to Pop'n Games Official Site.">
                 </p>
+
             </header>
+
             <div class="content">
                 <span class="image fill" data-position="center">
                     <img src="images/pic01.jpg" alt="Pop'n Games" />
@@ -75,6 +110,7 @@
                     data-en="About Our Games">
                 </h2>
             </header>
+
             <div class="content">
                 <p data-ja="Pop'n Gamesでは、パズルやアクションなど、様々なジャンルのゲームを開発・公開しています。"
                    data-en="Pop'n Games develops and publishes games across various genres, including puzzle and action games.">
@@ -93,6 +129,7 @@
                     data-en="Legal">
                 </h2>
             </header>
+
             <div class="content">
                 <p data-ja="ユーザーの皆様に安心してご利用いただけるよう、プライバシーポリシーを定めています。"
                    data-en="We have established a privacy policy to help users understand how their information is handled.">
@@ -157,15 +194,17 @@
             }
         }
 
-        // 保存済みの言語を優先し、未設定ならブラウザ言語を使用
+        // 保存済みの言語を優先
         var savedLanguage = null;
 
         try {
-            savedLanguage = localStorage.getItem('popngames-language');
+            savedLanguage =
+                localStorage.getItem('popngames-language');
         } catch (e) {
             // 保存領域を利用できない場合
         }
 
+        // 未設定の場合はブラウザ言語を使用
         var browserLanguage =
             navigator.language.toLowerCase().startsWith('ja')
                 ? 'ja' : 'en';
