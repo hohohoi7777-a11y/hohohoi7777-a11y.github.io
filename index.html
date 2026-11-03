@@ -1,70 +1,181 @@
+
 <!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Pop'n Games</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<style>
-			/* 余白をさらに狭くするための微調整 */
-			.intro { padding: 2rem 0 !important; }
-			section { padding: 2rem 0 !important; }
-			#wrapper > section { border-top: none !important; }
-		</style>
-	</head>
-	<body class="is-preload">
+<html lang="ja">
+<head>
+    <title>Pop'n Games</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        /* 既存の余白調整 */
+        .intro { padding: 2rem 0 !important; }
+        section { padding: 2rem 0 !important; }
+        #wrapper > section { border-top: none !important; }
 
-		<div id="wrapper">
+        /* 言語切り替え */
+        .language-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            padding: 1rem 0;
+        }
 
-				<section class="intro">
-						<header>
-							<h1>Pop'n Games</h1>
-							<p>Welcome to Pop'n Games Official Site.</p>
-						</header>
-						<div class="content">
-							<span class="image fill" data-position="center"><img src="images/pic01.jpg" alt="" /></span>
-						</div>
-					</section>
+        .language-switch button {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            height: auto;
+            line-height: 1.5;
+            min-width: 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-				
-				
-				<section id="first">
-				    <header>
-				        <h2>About Our Games</h2>
-				    </header>
-				    <div class="content">
-				        <p><strong>Pop'n Games</strong> では、パズルやアクションなど、様々なジャンルのゲームを開発・公開しています。</p>
-				        <p>シンプルな操作で気軽に楽しめるゲームから、じっくり遊べるゲームまで、幅広い作品を提供しています。</p>
-				    </div>
-				</section>
+        .language-switch button.active {
+            background-color: #49fcd4;
+            color: #000 !important;
+        }
+    </style>
+</head>
 
+<body class="is-preload">
 
+    <div id="wrapper">
 
-				<section>
-						<header>
-							<h2>Legal</h2>
-						</header>
-						<div class="content">
-							<p>ユーザーの皆様に安心してご利用いただけるよう、プライバシーポリシーを定めています。</p>
-							<ul class="actions">
-								<li><a href="https://sites.google.com/view/popngames-privacy/%E3%83%9B%E3%83%BC%E3%83%A0" class="button primary">プライバシーポリシー</a></li>
-							</ul>
-						</div>
-					</section>
+        <!-- 言語切り替えボタン -->
+        <nav class="language-switch" aria-label="Language">
+            <button type="button" id="lang-ja"
+                    onclick="setLanguage('ja')">
+                日本語
+            </button>
+            <button type="button" id="lang-en"
+                    onclick="setLanguage('en')">
+                English
+            </button>
+        </nav>
 
-				<div class="copyright" style="padding: 2rem 0;">
-						&copy; Pop'n Games. All rights reserved.<br />
-						Design: <a href="https://html5up.net">HTML5 UP</a>.
-					</div>
+        <!-- トップ -->
+        <section class="intro">
+            <header>
+                <h1>Pop'n Games</h1>
+                <p data-ja="Pop'n Games 公式サイトへようこそ。"
+                   data-en="Welcome to Pop'n Games Official Site.">
+                </p>
+            </header>
+            <div class="content">
+                <span class="image fill" data-position="center">
+                    <img src="images/pic01.jpg" alt="Pop'n Games" />
+                </span>
+            </div>
+        </section>
 
-			</div>
+        <!-- ゲーム紹介 -->
+        <section id="first">
+            <header>
+                <h2 data-ja="ゲームについて"
+                    data-en="About Our Games">
+                </h2>
+            </header>
+            <div class="content">
+                <p data-ja="Pop'n Gamesでは、パズルやアクションなど、様々なジャンルのゲームを開発・公開しています。"
+                   data-en="Pop'n Games develops and publishes games across various genres, including puzzle and action games.">
+                </p>
 
-		<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+                <p data-ja="シンプルな操作で気軽に楽しめるゲームから、じっくり遊べるゲームまで、幅広い作品を提供しています。"
+                   data-en="We offer a wide range of games, from casual games with simple controls to games you can enjoy for hours.">
+                </p>
+            </div>
+        </section>
 
-	</body>
+        <!-- プライバシーポリシー -->
+        <section>
+            <header>
+                <h2 data-ja="プライバシーポリシー"
+                    data-en="Legal">
+                </h2>
+            </header>
+            <div class="content">
+                <p data-ja="ユーザーの皆様に安心してご利用いただけるよう、プライバシーポリシーを定めています。"
+                   data-en="We have established a privacy policy to help users understand how their information is handled.">
+                </p>
+
+                <ul class="actions">
+                    <li>
+                        <a href="https://sites.google.com/view/popngames-privacy/%E3%83%9B%E3%83%BC%E3%83%A0"
+                           class="button primary"
+                           data-ja="プライバシーポリシー"
+                           data-en="Privacy Policy">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- フッター -->
+        <div class="copyright" style="padding: 2rem 0;">
+            &copy; Pop'n Games. All rights reserved.<br />
+            Design: <a href="https://html5up.net">HTML5 UP</a>.
+        </div>
+
+    </div>
+
+    <!-- 既存スクリプト -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- 言語切り替え処理 -->
+    <script>
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-ja][data-en]')
+                .forEach(function(element) {
+                    element.textContent = element.getAttribute(
+                        lang === 'ja' ? 'data-ja' : 'data-en'
+                    );
+                });
+
+            document.getElementById('lang-ja')
+                .classList.toggle('active', lang === 'ja');
+
+            document.getElementById('lang-en')
+                .classList.toggle('active', lang === 'en');
+
+            document.getElementById('lang-ja')
+                .setAttribute('aria-pressed', String(lang === 'ja'));
+
+            document.getElementById('lang-en')
+                .setAttribute('aria-pressed', String(lang === 'en'));
+
+            try {
+                localStorage.setItem('popngames-language', lang);
+            } catch (e) {
+                // 保存できない環境でも言語切り替えは動作
+            }
+        }
+
+        // 保存済みの言語を優先し、未設定ならブラウザ言語を使用
+        var savedLanguage = null;
+
+        try {
+            savedLanguage = localStorage.getItem('popngames-language');
+        } catch (e) {
+            // 保存領域を利用できない場合
+        }
+
+        var browserLanguage =
+            navigator.language.toLowerCase().startsWith('ja')
+                ? 'ja' : 'en';
+
+        setLanguage(
+            savedLanguage === 'ja' || savedLanguage === 'en'
+                ? savedLanguage
+                : browserLanguage
+        );
+    </script>
+
+</body>
 </html>
